@@ -29,9 +29,6 @@ export default {
     },
   },
   methods: {
-    goTo(note) {
-      this.$router.push(`/notes/${note._id}`);
-    },
     deleteNote(id) {
       this.$emit("del", id);
     }
