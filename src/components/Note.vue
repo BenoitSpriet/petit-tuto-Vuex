@@ -2,7 +2,7 @@
   <div class="note">
     <div class="header">
       <h2>{{ note.title }}</h2>
-      <button @click="goTo(note)">
+      <button>
         <img src="@/assets/read_more_white_24dp.svg" alt="See More" />
       </button>
     </div>
@@ -10,7 +10,7 @@
       <p>{{ task }}</p>
     </div>
     <div class="footer">
-      <button><img src="@/assets/edit_white_24dp.svg" alt="Edit" @click="goTo(note)" /></button>
+      <button><img src="@/assets/edit_white_24dp.svg" alt="Edit"/></button>
       <button><img src="@/assets/delete_white_24dp.svg" alt="Delete" @click="deleteNote(note._id)" /></button>
     </div>
   </div>
@@ -33,7 +33,7 @@ export default {
       this.$router.push(`/notes/${note._id}`);
     },
     deleteNote(id) {
-      this.$store.dispatch("deleteNote", id);
+      this.$emit("del", id);
     }
   }
 };

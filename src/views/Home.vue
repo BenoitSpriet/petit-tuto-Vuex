@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div id="notes">
-      <Note v-for="(note, index) in notes" :index="index" :key="note._id" :note="note"/>
+      <Note v-for="(note, index) in notes" :index="index" :key="note._id" :note="note" @del="deleteNote"/>
     </div>
   </div>
 </template>
@@ -15,14 +15,40 @@ export default {
   components: {
     Note,
   },
-  mounted() {
-    this.$store.dispatch("getNotes");
+  data() {
+    return {
+      notes: [
+        {
+          _id: "1a1",
+          title: "un titre",
+          content: [
+            "du contenu",
+          ]
+        },
+        {
+          _id: "1a2",
+          title: "un deuxieme titre",
+          content: [
+            "un autre contenu",
+          ]
+        },
+        {
+          _id: "1a3",
+          title: "un troisième titre",
+          content: [
+            "encore du contenu",
+            "et toujours plus",
+          ]
+        },
+      ]
+    }
   },
-  computed: {
-    notes() {
-      return this.$store.state.notes;
-    },
-  },
+  methods: {
+    deleteNote(id) {
+      let index = this.notes.findIndex(note =>note._id == id);
+      this.notes.splice(index,1);
+    }
+  }
 };
 </script>
 
