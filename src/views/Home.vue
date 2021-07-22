@@ -15,39 +15,13 @@ export default {
   components: {
     Note,
   },
-  data() {
-    return {
-      notes: [
-        {
-          _id: "1a1",
-          title: "un titre",
-          content: [
-            "du contenu",
-          ]
-        },
-        {
-          _id: "1a2",
-          title: "un deuxieme titre",
-          content: [
-            "un autre contenu",
-          ]
-        },
-        {
-          _id: "1a3",
-          title: "un troisième titre",
-          content: [
-            "encore du contenu",
-            "et toujours plus",
-          ]
-        },
-      ]
+  computed: {
+    notes() {
+      return this.$store.state.notes
     }
   },
-  methods: {
-    deleteNote(id) {
-      let index = this.notes.findIndex(note =>note._id == id);
-      this.notes.splice(index,1);
-    }
+  mounted() {
+    this.$store.dispatch('getNotes');
   }
 };
 </script>

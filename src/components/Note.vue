@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     deleteNote(id) {
-      this.$emit("del", id);
+      this.$store.dispatch('deleteNote', id)
     }
   }
 };
